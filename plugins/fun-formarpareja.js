@@ -2,6 +2,12 @@ let toM = (a) => "@" + a.split("@")[0];
 let encuestaParticipantes = [];
 
 function handler(m, { groupMetadata }) {
+  // Verificar si el mensaje tiene contenido
+  if (!m.body) {
+    console.log("El mensaje no tiene contenido.");
+    return;
+  }
+
   if (m.body.startsWith("!encuesta")) {
     // Iniciar la encuesta y almacenar participantes
     encuestaParticipantes = groupMetadata.participants.map((v) => v.id);
